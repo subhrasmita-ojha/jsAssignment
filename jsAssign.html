@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>JS Assignment</title>
+
+</head>
+<body onload="EMPDetails()">
+	
+	 <form action="" name="JSForm">
+         
+      <p><label for="fname">First Name:</label><br>
+      <input type="text" id="fname" name="fname"  ><br></p>
+
+      <p><label for="lname">Last Name:</label><br>
+       <input type="text" id="lname" name="lname"  ><br></p>
+
+       <p><label for="Email">Email:</label><br>
+       <input type="email" id="Email" name="Email"  ><br></p>
+
+
+       <p><label for="cnctNumb">Contact Number:</label><br>
+       <input type="text" id="cnctNumb" name="cnctNumb"  ><br></p>
+
+
+       <p><label for="Address">Address:</label><br>
+      <textarea id="Address" rows="4" cols="20" name="Address"  ></textarea><br></p>
+	  
+     <p><label for="Username">Username:</label><br>
+      <input type="text" id="Username" name="Username"><br></p>
+
+     <p><label for="password">Password:</label><br>
+     <input type="text" id="password" name="password"><br></p>
+
+   <p><label for="gender">Gender:</label><br>
+    <input type="radio" id="gender" name="gender" value="male">
+    <label for="male"> Male</label><br>
+    <input type="radio" id="gender" name="gender" value="female">
+    <label for="female"> Female</label><br></p>
+
+	<p><label for="Qualification">Qualification:</label><br>
+	<select id="cmbQualification">
+		<option value="null">--select--</option>
+	</select><br></p>
+	
+	<p><label for="Experience">Experience:</label><br>
+    <select id="cmbExperience">
+       <option value="null">--select--</option>
+    </select><br></p>
+	 
+	<label for="Coding Language">Coding Language:</label><br>
+	<div id="checkbox"></div><br>
+	
+	  <input type="submit" id="btnsub"  value="Submit">
+
+		
+	</form>
+	<script type="text/javascript" language="javascript">
+		var qualification=["ITM","IST","B.sc","BCA","BTECH","MCA","MTECH"];
+	    var experiences=[1,2,3,4,5];
+		var CodingLanguages=[
+		{
+			LanguageName:"C/C++",
+			isEnabled:false
+
+		},
+		{
+			LanguageName:"JAVA",
+			isEnabled:true
+		},
+		{
+			LanguageName:"C#",
+			isEnabled:true
+		},
+		{
+			LanguageName:"PHP",
+			isEnabled:false
+		},
+		{
+			LanguageName:"PYTHON",
+			isEnabled:false
+		}
+		];
+	
+		
+	   document.getElementById("btnsub").addEventListener("click",
+		function(obj){
+			var employee={};
+			obj.preventDefault();
+			  employee.fname = document.getElementById("fname").value;
+            employee.lname = document.getElementById("lname").value;
+            employee.Email = document.getElementById("Email").value;
+            employee.cnctNumb = document.getElementById("cnctNumb").value;
+            employee.Address = document.getElementById("Address").value;
+            employee.Username = document.getElementById("Username").value;
+            employee.password = document.getElementById("password").value;
+            employee.gender = document.JSForm.gender.value;
+            employee.cmbQualification = document.getElementById("cmbQualification").value;
+			employee.cmbExperience=document.getElementById("cmbExperience").value;
+            employee.CodingLanguages=document.querySelectorAll("#lang:checked");
+			
+	        console.log(employee.fname);
+            console.log(employee.lname);
+            console.log(employee.Email);
+            console.log(employee.cnctNumb);
+            console.log(employee.Address);
+            console.log(employee.Username);
+            console.log(employee.password);
+            console.log(employee.gender);
+            console.log(employee.cmbQualification);
+			console.log(employee.cmbExperience);
+			for(var i=0;i<employee.CodingLanguages.length;i++)			
+				console.log(employee.CodingLanguages[i].value);
+		})
+			
+			 function EMPDetails(){
+            var qualifications = document.getElementById("cmbQualification");
+            for(let i = 0; i<qualification.length;i++){
+                let empl = document.createElement("option");
+                empl.value = qualification[i];
+                empl.innerText = qualification[i];
+                qualifications.appendChild(empl);
+            }
+			
+			 var experience = document.getElementById("cmbExperience");
+               for(let i = 0; i<experiences.length;i++){
+                let emp1 = document.createElement("option");
+                emp1.value = experiences[i];
+                emp1.innerText = experiences[i];
+                experience.appendChild(emp1);
+            }
+			
+		  var checkDiv = document.getElementById("checkbox");
+            for(let i = 0; i<CodingLanguages.length;i++){
+                let empl = document.createElement("input");
+                empl.type = "checkbox";
+                empl.id="lang";
+                empl.value = CodingLanguages[i].LanguageName;
+                empl.checked = CodingLanguages[i].isEnabled;
+                let span = document.createElement("span");
+                span.appendChild(document.createTextNode(CodingLanguages[i].LanguageName));
+                checkDiv.appendChild(empl);
+                checkDiv.appendChild(span);
+				checkDiv.appendChild(document.createElement("br"));
+            }
+	    }                                    
+    </script>
+</body>
+</html>
